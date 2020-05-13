@@ -38,7 +38,6 @@ cols_common <- c("id", "sex", "age", "country", "symptoms", "outcome",
 tbl_master <- rbind(tbl_merge[cols_common], tbl_ncov19[cols_common])
 
 
-
 # clean dates
 ## Some dates are ranged, here I take the first date by using substr to 
 ## get the first 10 characters.
@@ -50,6 +49,23 @@ tbl_master$date_confirmation <- as.Date(gsub("[.]", "/", substr(tbl_master$date_
 # replace ; with , in symptoms column
 tbl_master$symptoms <- str_replace_all(tbl_master$symptoms, ";", ", ")
 tbl_master$symptoms <- str_replace_all(tbl_master$symptoms, ":", ", ")
+
+
+# check for and remove duplicated samples
+is_duplicated1 <- tbl_master %>% select(-id, -symptoms) %>% duplicated()
+is_duplicated2 <- tbl_master %>% select(-id, -symptoms) %>% duplicated(fromLast=TRUE)
+is_duplicated <- is_duplicated1 | is_duplicated2
+tbl_master %>% 
+  filter(is_duplicated) %>%
+  arrange(country, outcome, age, sex, date_onset_symptoms, date_admission_hospital) %>%
+  filter(!is.na(symptoms)) %>%
+  tail()
+
+table(is_duplicated)
+
+tbl_master <- tbl_master[!is_duplicated1, ]
+dim(tbl_master)
+
 
 
 # separate data
@@ -70,7 +86,7 @@ for (i in pull(tbl_master[is_symptom, "symptoms"])) {
   }
 }
 df_symptom_counts <- as.data.frame(table(vec_symptoms)) %>% arrange(desc(Freq))
-count_threshold <- 25
+count_threshold <- 15
 df_symptom_counts %>% 
   filter(Freq > count_threshold) %>%
   ggplot() +
@@ -81,7 +97,7 @@ df_symptom_counts %>%
 
 vec_symptoms <- trimws(unique(vec_symptoms))
 
-tbl_master %>% write_csv("data/survival_master_duplicates_not_checked.csv")
+# tbl_master %>% write_csv("data/survival_master_duplicates_not_checked.csv")
 
 
 #  ---------------------------------------------------------------------------
