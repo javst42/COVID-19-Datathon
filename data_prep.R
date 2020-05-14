@@ -37,22 +37,38 @@ length(unique(tbl_symptom_dict$`standard symptom`))
 
 # Clean -------------------------------------------------------------------
 
-# remove samples without date of symptom onset
-is_date_onset <- !is.na(tbl_ncov19$date_onset_symptoms)
-table(is_date_onset)
-
-tbl_ncov19 <- tbl_ncov19[is_date_onset, ]
-dim(tbl_ncov19)
-
 # merge datasets
 tbl_ncov19 %>% select(starts_with("date"))
-tbl_ncov19 <- rename(tbl_ncov19, id = ID)
+tbl_merge %>% select(starts_with("date"))
 tbl_merge$date_confirmation <- NA # create new column with NA values before merging
+tbl_ncov19 <- rename(tbl_ncov19, id = ID)
 cols_common <- c("id", "sex", "age", "country", "symptoms", "outcome", 
                  "date_onset_symptoms", "date_admission_hospital", 
                  "date_death_or_discharge", "date_confirmation")
 
 tbl_master <- rbind(tbl_merge[cols_common], tbl_ncov19[cols_common])
+
+
+# check missing dates
+tbl_master
+
+# remove samples without date of symptom onset
+is_date_onset <- !is.na(tbl_master$date_onset_symptoms)
+is_date_confirmation <- !is.na(tbl_master$date_confirmation)
+
+table(is_date_onset)
+table(is_date_confirmation)
+table(is_date_onset | is_date_confirmation)
+
+date_start <- tbl_master$date_confirmation
+date_start[is.na(date_start)] <- tbl_master$date_onset_symptoms[is.na(date_start)]
+tbl_master$date_start <- date_start
+
+is_start_date <- !is.na(tbl_master$date_start)
+table(is_start_date)
+
+tbl_master <- tbl_master[is_start_date, ]
+dim(tbl_master)
 
 
 # convert age to numeric
@@ -63,6 +79,25 @@ tbl_master$age<- gsub("s", "", tbl_master$age)
 tbl_master$age <- sapply(
   tbl_master$age, function(x) strsplit(x, "-")[[1]][1]
 ) # take the first number in a number range
+tbl_master$age <- ifelse("month" %in% tbl_master$age, 
+                         strsplit(tbl_master$age, " ")[[1]][1] / 12,
+                         tbl_master$age)
+tbl_master$age <- sapply(tbl_master$age,
+             function(x) {
+               ifelse(str_detect(x, "month"), 
+                      as.character(as.numeric(strsplit(x, " ")[[1]][1]) / 12), 
+                      x)
+               }) # convert months to years
+tbl_master$age <- sapply(tbl_master$age,
+                         function(x) {
+                           ifelse(str_detect(x, "week"), 
+                                  as.character(as.numeric(strsplit(x, " ")[[1]][1]) / 52), 
+                                  x)
+                         }) # convert weeks to years
+      
+
+tbl_master$age %>% table()
+
 tbl_master$age <- as.numeric(tbl_master$age)  # convert to numeric
 
 
@@ -77,7 +112,7 @@ tbl_master$date_confirmation <- as.Date(gsub("[.]", "/", substr(tbl_master$date_
 # replace ; with , in symptoms column
 tbl_master$symptoms <- str_replace_all(tbl_master$symptoms, ";", ", ")
 tbl_master$symptoms <- str_replace_all(tbl_master$symptoms, ":", ", ")
-
+table(is.na(tbl_master$symptoms))
 
 # check for and remove duplicated samples
 is_duplicated1 <- tbl_master %>% select(-id, -symptoms) %>% duplicated()
