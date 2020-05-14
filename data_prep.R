@@ -225,7 +225,8 @@ table(is.na(tbl_master$date_start))
 
 date_start <- tbl_master$date_start
 date_end <- tbl_master$date_death_or_discharge
-date_end[is.na(date_end)] <- tbl_master$date_admission_hospital[is.na(date_end)]
+table(is.na(date_end))
+date_end[is.na(date_end)] <- as.Date("2020-05-11") # censor non-deaths
 idx_neg <- (date_end - date_start) < 0
 idx_neg[is.na(idx_neg)] <- FALSE
 
@@ -243,7 +244,7 @@ tbl_master$days_to_event <- date_end - date_start
 table(is.na(tbl_master$days_to_event))
 
 ## Not sure about this line:
-tbl_master$days_to_event[is.na(tbl_master$days_to_event)] <- max(tbl_master$days_to_event[!is.na(tbl_master$days_to_event)])
+#tbl_master$days_to_event[is.na(tbl_master$days_to_event)] <- max(tbl_master$days_to_event[!is.na(tbl_master$days_to_event)])
   
 # create death and hospitalized columns
 
@@ -294,9 +295,9 @@ tbl_master %>%
   drop_na(continent) %>%
   ggplot(aes(x = as.factor(continent), y = age, 
              fill = as.factor(dead),
-             color = as.factor(dead))) +
-  geom_violin(alpha = 0.2) + 
-  geom_jitter(alpha = 0.4) +
+             color = as.factor(dead))) + 
+  geom_jitter(alpha = 0.1) +
+  geom_violin(alpha = 0.7) +
   ggtitle("Deaths")
 
 
