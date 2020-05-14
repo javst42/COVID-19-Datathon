@@ -37,20 +37,26 @@ length(unique(tbl_symptom_dict$`standard symptom`))
 
 # Clean -------------------------------------------------------------------
 
-# merge datasets
+# merge datasets: finding duplicated samples has gotten more difficult...
+# only going to use tbl_ncov19
 tbl_ncov19 %>% select(starts_with("date"))
 tbl_merge %>% select(starts_with("date"))
 tbl_merge$date_confirmation <- NA # create new column with NA values before merging
 tbl_ncov19 <- rename(tbl_ncov19, id = ID)
 cols_common <- c("id", "sex", "age", "country", "symptoms", "outcome", 
+                 "latitude", "longitude",
                  "date_onset_symptoms", "date_admission_hospital", 
                  "date_death_or_discharge", "date_confirmation")
 
-tbl_master <- rbind(tbl_merge[cols_common], tbl_ncov19[cols_common])
+#####
+# check for and remove duplicated samples
+# if not checking for duplicates, don't use tbl_merge... only use tbl_ncov19
+#####
 
 
-# check missing dates
-tbl_master
+#tbl_master <- rbind(tbl_merge[cols_common], tbl_ncov19[cols_common])
+tbl_master <- tbl_ncov19[cols_common]
+
 
 # remove samples without date of symptom onset
 is_date_onset <- !is.na(tbl_master$date_onset_symptoms)
@@ -79,9 +85,6 @@ tbl_master$age<- gsub("s", "", tbl_master$age)
 tbl_master$age <- sapply(
   tbl_master$age, function(x) strsplit(x, "-")[[1]][1]
 ) # take the first number in a number range
-tbl_master$age <- ifelse("month" %in% tbl_master$age, 
-                         strsplit(tbl_master$age, " ")[[1]][1] / 12,
-                         tbl_master$age)
 tbl_master$age <- sapply(tbl_master$age,
              function(x) {
                ifelse(str_detect(x, "month"), 
@@ -115,25 +118,33 @@ tbl_master$symptoms <- str_replace_all(tbl_master$symptoms, ":", ", ")
 table(is.na(tbl_master$symptoms))
 
 # check for and remove duplicated samples
-is_duplicated1 <- tbl_master %>% select(-id, -symptoms) %>% duplicated()
-is_duplicated2 <- tbl_master %>% select(-id, -symptoms) %>% duplicated(fromLast=TRUE)
-is_duplicated <- is_duplicated1 | is_duplicated2
-tbl_master %>% 
-  filter(is_duplicated) %>%
-  arrange(country, outcome, age, sex, date_onset_symptoms, date_admission_hospital) %>%
-  filter(!is.na(symptoms)) %>%
-  tail()
+# is_duplicated1 <- tbl_master %>% select(-symptoms) %>% duplicated()
+# is_duplicated2 <- tbl_master %>% select(-symptoms) %>% duplicated(fromLast=TRUE)
+# is_duplicated <- is_duplicated1 | is_duplicated2
+# table(is_duplicated)
+# 
+# tbl_master %>% 
+#   filter(is_duplicated) %>%
+#   arrange(country, outcome, age, sex, date_onset_symptoms, date_admission_hospital) %>%
+#   filter(!is.na(symptoms)) %>%
+#   tail()
+# 
+# 
+# 
+# tbl_master <- tbl_master[!is_duplicated1, ]
+# dim(tbl_master)
 
-table(is_duplicated)
-
-tbl_master <- tbl_master[!is_duplicated1, ]
-dim(tbl_master)
+# add Taiwan
+tbl_master$country[
+  (tbl_master$latitude >= 23 & tbl_master$latitude <= 26) & 
+    (tbl_master$longitude >= 120 & tbl_master$longitude <= 122)] <- "Taiwan"
 
 # add continent
 tbl_master$continent <- countrycode(sourcevar = tbl_master$country,
                                     origin = "country.name",
                                     destination = "continent")
 tbl_master$continent[tbl_master$country == "HK SAR"] <- "Asia"
+tbl_master$continent[tbl_master$country == "Kosovo"] <- "Europe"
 table(tbl_master$continent)
 tbl_master[is.na(tbl_master$continent), ]
 
@@ -210,10 +221,10 @@ table(is.na(tbl_master$date_onset_symptoms))
 table(is.na(tbl_master$date_admission_hospital))
 table(is.na(tbl_master$date_confirmation))
 table(is.na(tbl_master$date_death_or_discharge))
+table(is.na(tbl_master$date_start))
 
-date_start <- tbl_master$date_onset_symptoms
+date_start <- tbl_master$date_start
 date_end <- tbl_master$date_death_or_discharge
-date_end[is.na(date_end)] <- tbl_master$date_confirmation[is.na(date_end)]
 date_end[is.na(date_end)] <- tbl_master$date_admission_hospital[is.na(date_end)]
 idx_neg <- (date_end - date_start) < 0
 idx_neg[is.na(idx_neg)] <- FALSE
