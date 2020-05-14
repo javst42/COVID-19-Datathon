@@ -1,3 +1,4 @@
+library(countrycode)
 library(tidyverse)
 
 
@@ -7,16 +8,32 @@ library(tidyverse)
 
 # Todo --------------------------------------------------------------------
 # symptoms need to be fixed before creating dummy data
+# time-to-event column needs to be created
+# what do  we do about data where end dates are not set?
+# TRUE/FALSE death_outcome and hospitalized_outcome columns need to be 
+## created where 1 means the event occurred and 0 means it was right-censored
 
 
 
 # Load data ---------------------------------------------------------------
 url_survival <- "https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/latestdata.csv"
+url_survival <- "/Users/brunods/MIT/COVID_datathon/data/latestdata.csv"
 url_merge <- "https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/bruno_798_patients_merged_survival_data.csv"
 tbl_ncov19 <- read_csv(url_survival)
 tbl_merge <- read_csv(url_merge)
 glimpse(tbl_ncov19)
 glimpse(tbl_merge)
+
+tbl_symptom_dict <- read_csv("data/symptoms_dictionary.csv")
+
+tbl_symptom_dict[duplicated(tbl_symptom_dict$original), ]
+
+table(tbl_symptom_dict$`symptom class`)
+table(tbl_symptom_dict$`standard symptom`)
+length(unique(tbl_symptom_dict$original))
+length(unique(tbl_symptom_dict$`symptom class`))
+length(unique(tbl_symptom_dict$`standard symptom`))
+
 
 # Clean -------------------------------------------------------------------
 
@@ -36,6 +53,17 @@ cols_common <- c("id", "sex", "age", "country", "symptoms", "outcome",
                  "date_death_or_discharge", "date_confirmation")
 
 tbl_master <- rbind(tbl_merge[cols_common], tbl_ncov19[cols_common])
+
+
+# convert age to numeric
+tbl_master$age %>% table()
+tbl_master$age[tbl_master$age == "elderly"] <- "65"  # elderly is defined as 65yo
+tbl_master$age[tbl_master$age == "<10"] <- "10"
+tbl_master$age<- gsub("s", "", tbl_master$age)
+tbl_master$age <- sapply(
+  tbl_master$age, function(x) strsplit(x, "-")[[1]][1]
+) # take the first number in a number range
+tbl_master$age <- as.numeric(tbl_master$age)  # convert to numeric
 
 
 # clean dates
@@ -65,6 +93,15 @@ table(is_duplicated)
 
 tbl_master <- tbl_master[!is_duplicated1, ]
 dim(tbl_master)
+
+# add continent
+tbl_master$continent <- countrycode(sourcevar = tbl_master$country,
+                                    origin = "country.name",
+                                    destination = "continent")
+tbl_master$continent[tbl_master$country == "HK SAR"] <- "Asia"
+table(tbl_master$continent)
+tbl_master[is.na(tbl_master$continent), ]
+
 
 
 
@@ -96,35 +133,41 @@ df_symptom_counts %>%
   xlab("Symptoms")
 
 vec_symptoms <- trimws(unique(vec_symptoms))
+length(vec_symptoms)
+length(intersect(tbl_symptom_dict$original, vec_symptoms))
 
-# tbl_master %>% write_csv("data/survival_master_duplicates_not_checked.csv")
+# tbl_master %>% write_csv("data/survival_master.csv")
 
 
 #  ---------------------------------------------------------------------------
 # Here we need to fix symptom names before creating dummies
 #  ---------------------------------------------------------------------------
 
+# use dictionary to change symptom names
 # create dummy
 for (i in 1:nrow(tbl_master[is_symptom, ])) {
   symptom <- pull(tbl_master[is_symptom, "symptoms"])[i]
   if (is.na(symptom)) next
-  for (symptom_i in strsplit(symptom, ",")[[1]]) {
-    if (symptom_i %in% colnames(tbl_master)) {
-      if (symptom_i == "") next
-      #if (symptom_i == ",") next
-      
-      tbl_master[is_symptom, symptom_i][i, ] <- 1
+  list_symptoms <- strsplit(symptom, ",")[[1]]
+  for (symptom_i in list_symptoms) {
+    symptom_i <- trimws(symptom_i)
+    is_in_dict <- tbl_symptom_dict$original == symptom_i
+    if (sum(is_in_dict) > 1) {
+      print("more than one key")
+      print(i)
+      break
+    }
+    symptom_new <- pull(tbl_symptom_dict[is_in_dict, 2])
+    if (length(symptom_new) == 0) next
+    if (is.na(symptom_new)) next
+    if (symptom_new %in% colnames(tbl_master)) {
+      tbl_master[is_symptom, symptom_new][i, ] <- 1
     } else {
-      tbl_master[symptom_i] <- 0
+      tbl_master[symptom_new] <- 0
     }
   }
 }
 
-
-
-####
-# CODE BELOW IS  INCOMPLETE
-####
 
 
 # create time-to-events
@@ -140,20 +183,83 @@ date_end[is.na(date_end)] <- tbl_master$date_admission_hospital[is.na(date_end)]
 idx_neg <- (date_end - date_start) < 0
 idx_neg[is.na(idx_neg)] <- FALSE
 
+
+# Some of these dates dont make sense... they must be typos
+#
+#
+#
 (date_end - date_start)[idx_neg]
 print("Some dates dont make sense")
-tbl_master[idx_neg, ] %>% select("ID", starts_with("date"), "country")
+tbl_master[idx_neg, ] %>% select("id", starts_with("date"), "country")
 
 # create a "days_to_event" column
-tbl_master$days_to_event <-
+tbl_master$days_to_event <- date_end - date_start
+table(is.na(tbl_master$days_to_event))
+
+## Not sure about this line:
+tbl_master$days_to_event[is.na(tbl_master$days_to_event)] <- max(tbl_master$days_to_event[!is.na(tbl_master$days_to_event)])
   
 # create death and hospitalized columns
-tbl_master$death
-tbl_master$hospitalized
+
+outcome <- tolower(tbl_master$outcome)
+table(outcome)
+dead <- outcome
+dead[is.na(dead)] <- 0
+dead <- ifelse(
+  dead == "dead" | dead == "death" | dead == "deceased" |
+    dead == "died",
+  1,
+  0)
+tbl_master$dead <- dead
+hospitalized <- outcome
+hospitalized[is.na(hospitalized)] <- 0
+hospitalized <- ifelse(!is.na(tbl_master$date_admission_hospital), 1, 0)
+tbl_master$hospitalized <- hospitalized
 
 
-times <-  tbl_km$date_end - tbl_km$date_onset_symptoms
-status <- tbl_km$dead
-surv_group <- tbl_km$country
-idx_keep <- !(is.na(tbl_km$date_end) | times < 0)
-tbl_km_plot <- tbl_km
+# tbl_master %>% write_csv("data/survival_master_dummy.csv")
+table(apply(tbl_master %>% select(-days_to_event, -continent), 1, function(x) all(is.na(x))))
+
+
+
+# EDA ---------------------------------------------------------------------
+tbl_master %>% 
+  drop_na(continent) %>%
+  ggplot(aes(x = age, color = continent)) +
+  geom_density() +
+  theme_bw()
+
+# distribution of age grouped by hospitalization
+tbl_master %>% 
+  ggplot(aes(x = age, color = as.factor(hospitalized))) +
+  geom_density() +
+  theme_bw()
+
+# distribution of age grouped by death
+tbl_master %>% 
+  filter(continent == "Asia") %>%
+  ggplot(aes(x = age, color = as.factor(dead))) +
+  geom_density() +
+  theme_bw()
+
+
+# deaths by continents
+tbl_master %>%
+  drop_na(continent) %>%
+  ggplot(aes(x = as.factor(continent), y = age, 
+             fill = as.factor(dead),
+             color = as.factor(dead))) +
+  geom_violin(alpha = 0.2) + 
+  geom_jitter(alpha = 0.4) +
+  ggtitle("Deaths")
+
+
+tbl_master %>%
+  drop_na(continent) %>%
+  ggplot(aes(x = as.factor(continent), y = age, 
+             fill = as.factor(hospitalized),
+             color = as.factor(hospitalized))) +
+  geom_violin(alpha = 0.2) + 
+  geom_jitter(alpha = 0.4) +
+  ggtitle("Hospitalization")
+
