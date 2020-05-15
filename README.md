@@ -11,13 +11,22 @@ https://github.com/beoutbreakprepared/nCoV2019/tree/master/latest_data
 Link to processed data: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/survival_master_dummy.csv
 
 ## Biomarker data
+<p>
+Original: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/time_series_375_prerpocess_en.csv
+</p>
+<p>
 There are multiple ways to group this data. I think using the first value is the most useful because it allows for more time to prepare. A test the day prior to discharge isn't very useful.
+</p>
+<p>
 Mean aggregated: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/clean_biomarker_mean.csv
 First value aggregated: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/clean_biomarker_first.csv
 Last value aggregated: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/clean_biomarker_last.csv
+</p>
 
-=======
->>>>>>> a7e29a12ad9aa17b8879383b98f21a0e5a014d78
+
+
+
+a7e29a12ad9aa17b8879383b98f21a0e5a014d78
 
 
   
