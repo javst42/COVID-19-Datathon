@@ -19,7 +19,11 @@ There are multiple ways to group this data. I think using the first value is the
 </p>
 <p>
 Mean aggregated: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/clean_biomarker_mean.csv
+</p>
+<p>
 First value aggregated: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/clean_biomarker_first.csv
+</p>
+<p>
 Last value aggregated: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/clean_biomarker_last.csv
 </p>
 
