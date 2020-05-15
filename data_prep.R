@@ -66,12 +66,16 @@ table(is_date_onset)
 table(is_date_confirmation)
 table(is_date_onset | is_date_confirmation)
 
+
+# start date is defined as confirmation, but if confirmation is empty, then it is symptom onset
 date_start <- tbl_master$date_confirmation
 date_start[is.na(date_start)] <- tbl_master$date_onset_symptoms[is.na(date_start)]
 tbl_master$date_start <- date_start
 
+
 is_start_date <- !is.na(tbl_master$date_start)
 table(is_start_date)
+
 
 tbl_master <- tbl_master[is_start_date, ]
 dim(tbl_master)
@@ -111,6 +115,7 @@ tbl_master$date_onset_symptoms <-  as.Date(gsub("[.]", "/", substr(tbl_master$da
 tbl_master$date_admission_hospital <- as.Date(gsub("[.]", "/", substr(tbl_master$date_admission_hospital, 1, 10)), format = '%d/%m/%Y')
 tbl_master$date_death_or_discharge <- as.Date(gsub("[.]", "/", substr(tbl_master$date_death_or_discharge, 1, 10)), format = '%d/%m/%Y')
 tbl_master$date_confirmation <- as.Date(gsub("[.]", "/", substr(tbl_master$date_confirmation, 1, 10)), format = '%d/%m/%Y')
+tbl_master$date_start <- as.Date(gsub("[.]", "/", substr(tbl_master$date_start, 1, 10)), format = '%d/%m/%Y')
 
 # replace ; with , in symptoms column
 tbl_master$symptoms <- str_replace_all(tbl_master$symptoms, ";", ", ")
@@ -204,6 +209,7 @@ for (i in 1:nrow(tbl_master[is_symptom, ])) {
       break
     }
     symptom_new <- pull(tbl_symptom_dict[is_in_dict, 2])
+    symptom_class <- pull(tbl_symptom_dict[is_in_dict, 3])
     if (length(symptom_new) == 0) next
     if (is.na(symptom_new)) next
     if (symptom_new %in% colnames(tbl_master)) {
@@ -211,9 +217,13 @@ for (i in 1:nrow(tbl_master[is_symptom, ])) {
     } else {
       tbl_master[symptom_new] <- 0
     }
+    if (symptom_class %in% colnames(tbl_master)) {
+      tbl_master[is_symptom, symptom_class][i, ] <- 1
+    } else {
+      tbl_master[symptom_class] <- 0
+    }
   }
 }
-
 
 
 # create time-to-events
@@ -226,7 +236,9 @@ table(is.na(tbl_master$date_start))
 date_start <- tbl_master$date_start
 date_end <- tbl_master$date_death_or_discharge
 table(is.na(date_end))
+
 date_end[is.na(date_end)] <- as.Date("2020-05-11") # censor non-deaths
+
 idx_neg <- (date_end - date_start) < 0
 idx_neg[is.na(idx_neg)] <- FALSE
 
@@ -238,6 +250,9 @@ idx_neg[is.na(idx_neg)] <- FALSE
 (date_end - date_start)[idx_neg]
 print("Some dates dont make sense")
 tbl_master[idx_neg, ] %>% select("id", starts_with("date"), "country")
+
+# remove samples where date start > date end
+tbl_master <- tbl_master[!idx_neg, ]
 
 # create a "days_to_event" column
 tbl_master$days_to_event <- date_end - date_start
@@ -265,11 +280,14 @@ tbl_master$hospitalized <- hospitalized
 
 
 # tbl_master %>% write_csv("data/survival_master_dummy.csv")
-table(apply(tbl_master %>% select(-days_to_event, -continent), 1, function(x) all(is.na(x))))
+#table(apply(tbl_master %>% select(-days_to_event, -continent), 1, function(x) all(is.na(x))))
 
 
 
 # EDA ---------------------------------------------------------------------
+
+# how many censored samples are there?
+
 tbl_master %>% 
   drop_na(continent) %>%
   ggplot(aes(x = age, color = continent)) +
