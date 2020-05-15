@@ -1,99 +1,149 @@
 original,standard symptom,symptom class
-2/4/20,,
-3/4/20,,
-4/4/20,,
-5/4/20,,
-6/4/20,,
-8/4/20,,
-15/04/20,,
-16/04/20,,
-17/03/20,,
-21/03/20,,
-24/03/20,,
-28/03/20,,
-37.1 ° c,fever,systemic
-38.7 degrees fever,fever,systemic
-a respiratory condition,other_respiratory,respiratory
-abdominal pain,other_unspecified,unspecified
-aches,other_systemic,systemic
-aching muscles,other_musculoskeletal,musculoskeletal
-acute coronary syndrome,other_cardiovascular,cardiovascular
-acute kidney injury,AKD,renal
-acute myocardial infarction,MI,cardiovascular
+sepsis,sepsis,systemic
+septic shock,sepsis,systemic
+nasal discharge,rhinorrhea,respiratory
+rhinorrhea,rhinorrhea,respiratory
+rhinorrhoea,rhinorrhea,respiratory
+running nose,rhinorrhea,respiratory
+runny nose,rhinorrhea,respiratory
+pneumonia,pneumonia,respiratory
+pneumonitis,pneumonia,respiratory
+pnuemonia,pneumonia,respiratory
+pulmonary inflammation,pneumonia,respiratory
+severe pneumonia,pneumonia,respiratory
+sputum,pneumonia,respiratory
 acute pharyngitis,pharyngitis,respiratory
-acute renal failure,AKD,renal
-acute respiratory disease,ARDS,respiratory
-acute respiratory disease syndrome,other_respiratory,respiratory
-acute respiratory distress,ARDS,respiratory
-acute respiratory distress syndrome,ARDS,respiratory
-acute respiratory failure,ARDS,respiratory
-acute respiratory viral infection,other_respiratory,respiratory
-acute respiratory viral infection (arvi),other_respiratory,respiratory
-afebrile,,
-aggressive pulmonary symptomatology,other_respiratory,respiratory
-anhelation,dyspnea,respiratory
+pharyngalgia,pharyngitis,respiratory
+pharyngeal discomfort,pharyngitis,respiratory
+pharyngeal dryness,pharyngitis,respiratory
+pharynx,pharyngitis,respiratory
+sore throa,pharyngitis,respiratory
+sore throat,pharyngitis,respiratory
+sore throath,pharyngitis,respiratory
+throat discomfort,pharyngitis,respiratory
+general pain,pain,systemic
+abdominal pain,other_unspecified,unspecified
 anorexia,other_unspecified,unspecified
-arrhythmia,other_cardiovascular,cardiovascular
-asymptomatic,,
-asymptomatic?,,
-backache,other_musculoskeletal,musculoskeletal
-between others,,
-body ache,other_systemic,systemic
-body aches,other_systemic,systemic
-body malaise,malaise,systemic
-body pain,myalgia,musculoskeletal
-bone pain,other_musculoskeletal,musculoskeletal
-breathing difficulty,dyspnea,respiratory
-cardiac arrhythmia,other_cardiovascular,cardiovascular
-cardiogenic shock,other_cardiovascular,cardiovascular
-cardiopulmonary arrest,other_cardiovascular,cardiovascular
 chest discomfort,other_unspecified,unspecified
 chest distress,other_unspecified,unspecified
 chest pain,other_unspecified,unspecified
 chest tightness,other_unspecified,unspecified
-chills,other_systemic,systemic
-cold,other_respiratory,respiratory
-cold chills,other_systemic,systemic
 colds,other_unspecified,unspecified
-congestive heart failure,other_cardiovascular,cardiovascular
+contact of hcov_19/brazil/spbr_01/2020,other_unspecified,unspecified
+covid_19 related symptoms,other_unspecified,unspecified
+difficulty walking,other_unspecified,unspecified
+discharge,other_unspecified,unspecified
+discomfort,other_unspecified,unspecified
+grasp,other_unspecified,unspecified
+headache,other_unspecified,unspecified
+headache.,other_unspecified,unspecified
+inapatence,other_unspecified,unspecified
+inappetance,other_unspecified,unspecified
+other symptoms,other_unspecified,unspecified
+pain,other_unspecified,unspecified
+physical discomfort,other_unspecified,unspecified
+sweating,other_unspecified,unspecified
+symptoms associated,other_unspecified,unspecified
+toothache,other_unspecified,unspecified
+aches,other_systemic,systemic
+body ache,other_systemic,systemic
+body aches,other_systemic,systemic
+chills,other_systemic,systemic
+cold chills,other_systemic,systemic
+full body slump,other_systemic,systemic
+multiple electrolyte imbalance,other_systemic,systemic
+poor physical condition,other_systemic,systemic
+sensation of chill,other_systemic,systemic
+sore body,other_systemic,systemic
+a respiratory condition,other_respiratory,respiratory
+acute respiratory disease syndrome,other_respiratory,respiratory
+acute respiratory viral infection,other_respiratory,respiratory
+acute respiratory viral infection (arvi),other_respiratory,respiratory
+aggressive pulmonary symptomatology,other_respiratory,respiratory
+cold,other_respiratory,respiratory
+coriza,other_respiratory,respiratory
+dry mouth,other_respiratory,respiratory
+dry throat,other_respiratory,respiratory
+e sintomas respirat‚àö‚â•rios moderados,other_respiratory,respiratory
+hypoxia,other_respiratory,respiratory
+lesions on chest radiographs,other_respiratory,respiratory
+little sputum,other_respiratory,respiratory
+mild resipiratory symptoms,other_respiratory,respiratory
+mild respiratory symptoms,other_respiratory,respiratory
+nasal congestion,other_respiratory,respiratory
+phlegm,other_respiratory,respiratory
+pleural effusion,other_respiratory,respiratory
+pleuritic chest pain,other_respiratory,respiratory
+respiratory complaints,other_respiratory,respiratory
+respiratory distress,other_respiratory,respiratory
+respiratory problems,other_respiratory,respiratory
+respiratory problems (lungs),other_respiratory,respiratory
+respiratory stress,other_respiratory,respiratory
+respiratory symptoms,other_respiratory,respiratory
+severe acute respiratory infection,other_respiratory,respiratory
+similar to a respiratory infection,other_respiratory,respiratory
+sneeze,other_respiratory,respiratory
+sneezing,other_respiratory,respiratory
+wheezing,other_respiratory,respiratory
 conjunctivitis,other_ocular,ocular
 conjuntivitis,other_ocular,ocular
-contact of hcov_19/brazil/spbr_01/2020,other_unspecified,unspecified
-coriza,other_respiratory,respiratory
-cough,cough,respiratory
-cough difficulty breathing,cough,respiratory
-cough fever,cough,respiratory
-cough symptoms,cough,respiratory
-coughing,cough,respiratory
-couh,cough,respiratory
-covid_19 related symptoms,other_unspecified,unspecified
-dcough,cough,respiratory
+eye irritation,other_ocular,ocular
+dizziness,other_neurological,neurological
+obnubilation,other_neurological,neurological
+somnolence,other_neurological,neurological
+aching muscles,other_musculoskeletal,musculoskeletal
+backache,other_musculoskeletal,musculoskeletal
+bone pain,other_musculoskeletal,musculoskeletal
+joint muscle pain,other_musculoskeletal,musculoskeletal
+rigor,other_musculoskeletal,musculoskeletal
+sore muscle,other_musculoskeletal,musculoskeletal
+joint pain,other_musculoskeletal,musculoskeletal
+sore limbs,other_musculoskeletal,musculoskeletal
+primary myelofibrosis,other_musculoskeletal,musculoskeletal
 diarrhea,other_gastrointestinal,gastrointestinal
 diarrheoa,other_gastrointestinal,gastrointestinal
 diarrhoea,other_gastrointestinal,gastrointestinal
-difficulty breathing,dyspnea,respiratory
-difficulty walking,other_unspecified,unspecified
-difficuty breathing,dyspnea,respiratory
 digestive discomfort,other_gastrointestinal,gastrointestinal
-discharge,other_unspecified,unspecified
-discomfort,other_unspecified,unspecified
-dizziness,other_neurological,neurological
-dry cough,cough,respiratory
-dry mouth,other_respiratory,respiratory
-dry throat,other_respiratory,respiratory
-dsypnea,dyspnea,respiratory
 dysphagia,other_gastrointestinal,gastrointestinal
-dyspnea,dyspnea,respiratory
-e sintomas respirat‚àö‚â•rios moderados,other_respiratory,respiratory
-emesis,emesis,gastrointestinal
 esophageal reflux,other_gastrointestinal,gastrointestinal
+gastritis,other_gastrointestinal,gastrointestinal
+acute coronary syndrome,other_cardiovascular,cardiovascular
+arrhythmia,other_cardiovascular,cardiovascular
+cardiac arrhythmia,other_cardiovascular,cardiovascular
+cardiogenic shock,other_cardiovascular,cardiovascular
+cardiopulmonary arrest,other_cardiovascular,cardiovascular
+congestive heart failure,other_cardiovascular,cardiovascular
 eventually showed acute left heart failure,other_cardiovascular,cardiovascular
-expectoration,cough,respiratory
-eye irritation,other_ocular,ocular
-fatigue,fatigue,systemic
-fatigure,fatigue,systemic
-febre,fever,systemic
+heart failure,other_cardiovascular,cardiovascular
+hypertension,other_cardiovascular,cardiovascular
+myocardial dysfunction,other_cardiovascular,cardiovascular
+multiple organ failure,organ failure,systemic
+mausea,nausea,gastrointestinal
+nausea,nausea,gastrointestinal
+body pain,myalgia,musculoskeletal
+mialgia,myalgia,musculoskeletal
+milagia,myalgia,musculoskeletal
+muscle,myalgia,musculoskeletal
+muscle ache,myalgia,musculoskeletal
+muscle aches,myalgia,musculoskeletal
+muscle pain,myalgia,musculoskeletal
+muscle soreness,myalgia,musculoskeletal
+muscular soreness,myalgia,musculoskeletal
+muscular stiffness,myalgia,musculoskeletal
+myalgia,myalgia,musculoskeletal
+myalgias,myalgia,musculoskeletal
+acute myocardial infarction,MI,cardiovascular
+myocardial infarction,MI,cardiovascular
+body malaise,malaise,systemic
 feeling ill,malaise,systemic
+general malaise,malaise,systemic
+malaise,malaise,systemic
+unwellness,malaise,systemic
+flu_like symptoms,ILI,systemic
+influenza,ILI,systemic
+37.1 ° c,fever,systemic
+38.7 degrees fever,fever,systemic
+febre,fever,systemic
 fever,fever,systemic
 fever  (37.0_5 ℃),fever,systemic
 fever  (37.2 ℃),fever,systemic
@@ -153,135 +203,85 @@ fever 38.3 ℃,fever,systemic
 fever 39.0 ℃,fever,systemic
 fever 39.3,fever,systemic
 fever 40.0,fever,systemic
-flu_like symptoms,ILI,systemic
-full body slump,other_systemic,systemic
-gasp,dyspnea,respiratory
-gastritis,other_gastrointestinal,gastrointestinal
-general malaise,malaise,systemic
-general pain,pain,systemic
-general weakness,asthenia,systemic
-grasp,other_unspecified,unspecified
-headache,other_unspecified,unspecified
-headache.,other_unspecified,unspecified
-heart failure,other_cardiovascular,cardiovascular
 high fever,fever,systemic
-hypertension,other_cardiovascular,cardiovascular
-hypoxia,other_respiratory,respiratory
-inapatence,other_unspecified,unspecified
-inappetance,other_unspecified,unspecified
-influenza,ILI,systemic
-joint muscle pain,other_musculoskeletal,musculoskeletal
-joint pain,other_muscoluskeletal,musculoskeletal
-kidney failure,AKD,renal
-lack of energy,fatigue,systemic
-lesions on chest radiographs,other_respiratory,respiratory
-lethargy,fatigue,systemic
-little sputum,other_respiratory,respiratory
 low fever (37.2 ° c),fever,systemic
 low fever (37.4 ℃),fever,systemic
 low fever 37.0 ℃,fever,systemic
-malaise,malaise,systemic
-mausea,nausea,gastrointestinal
-mialgia,myalgia,musculoskeletal
-milagia,myalgia,musculoskeletal
-mild,,
+rever,fever,systemic
+slight fever,fever,systemic
+then 38 ℃),fever,systemic
+then on march 4 had feverish symptoms,fever,systemic
+fatigue,fatigue,systemic
+fatigure,fatigue,systemic
+lack of energy,fatigue,systemic
+lethargy,fatigue,systemic
+minor fatigue,fatigue,systemic
+tired,fatigue,systemic
+tiredness,fatigue,systemic
+transient fatigue,fatigue,systemic
+emesis,emesis,gastrointestinal
+vomiting.,emesis,gastrointestinal
+anhelation,dyspnea,respiratory
+breathing difficulty,dyspnea,respiratory
+difficulty breathing,dyspnea,respiratory
+difficuty breathing,dyspnea,respiratory
+dsypnea,dyspnea,respiratory
+dyspnea,dyspnea,respiratory
+gasp,dyspnea,respiratory
+severe dyspnea,dyspnea,respiratory
+shortness breath,dyspnea,respiratory
+shortness of breath,dyspnea,respiratory
+cough,cough,respiratory
+cough difficulty breathing,cough,respiratory
+cough fever,cough,respiratory
+cough symptoms,cough,respiratory
+coughing,cough,respiratory
+couh,cough,respiratory
+dcough,cough,respiratory
+dry cough,cough,respiratory
+expectoration,cough,respiratory
 mild cough,cough,respiratory
 mild coughing,cough,respiratory
-mild resipiratory symptoms,other_respiratory,respiratory
-mild respiratory symptoms,other_respiratory,respiratory
+mile cough,cough,respiratory
+tosse,cough,respiratory
+unproductive cough,cough,respiratory
+general weakness,asthenia,systemic
+systemic weakness,asthenia,systemic
+weak,asthenia,systemic
+weakness,asthenia,systemic
+acute respiratory disease,ARDS,respiratory
+acute respiratory distress, ,respiratory
+acute respiratory distress syndrome,ARDS,respiratory
+acute respiratory failure,ARDS,respiratory
+severe acute respiratory distress syndrome,ARDS,respiratory
+acute kidney injury,AKD,renal
+acute renal failure,AKD,renal
+kidney failure,AKD,renal
+2/4/20,,
+3/4/20,,
+4/4/20,,
+5/4/20,,
+6/4/20,,
+8/4/20,,
+15/04/20,,
+16/04/20,,
+17/03/20,,
+21/03/20,,
+24/03/20,,
+28/03/20,,
+afebrile,,
+asymptomatic,,
+asymptomatic?,,
+between others,,
+mild,,
 mild symptoms,,
 mild to moderate,,
-mile cough,cough,respiratory
-minor fatigue,fatigue,systemic
 moderate,,
-multiple electrolyte imbalance,other_systemic,systemic
-multiple organ failure,organ failure,systemic
-muscle,myalgia,musculoskeletal
-muscle ache,myalgia,musculoskeletal
-muscle aches,myalgia,musculoskeletal
-muscle pain,myalgia,musculoskeletal
-muscle soreness,myalgia,musculoskeletal
-muscular soreness,myalgia,musculoskeletal
-muscular stiffness,myalgia,musculoskeletal
-myalgia,myalgia,musculoskeletal
-myalgias,myalgia,musculoskeletal
-myocardial dysfunction,other_cardiovascular,cardiovascular
-myocardial infarction,MI,cardiovascular
-nasal congestion,other_respiratory,respiratory
-nasal discharge,rhinorrhea,respiratory
-nausea,nausea,gastrointestinal
 no clinical symptoms,,
 no respiratory symptoms,,
 no serious symptoms,,
 no symptoms,,
 none,,
-obnubilation,other_neurological,neurological
 oligosymptomatic,,
-other symptoms,other_unspecified,unspecified
-pain,other_unspecified,unspecified
-pharyngalgia,pharyngitis,respiratory
-pharyngeal discomfort,pharyngitis,respiratory
-pharyngeal dryness,pharyngitis,respiratory
-pharynx,pharyngitis,respiratory
-phlegm,other_respiratory,respiratory
-physical discomfort,other_unspecified,unspecified
-pleural effusion,other_respiratory,respiratory
-pleuritic chest pain,other_respiratory,respiratory
-pneumonia,pneumonia,respiratory
-pneumonitis,pneumonia,respiratory
-pnuemonia,pneumonia,respiratory
-poor physical condition,other_systemic,systemic
-primary myelofibrosis,other_muscoloskeletal,musculoskeletal
-pulmonary inflammation,pneumonia,respiratory
-respiratory complaints,other_respiratory,respiratory
-respiratory distress,other_respiratory,respiratory
-respiratory problems,other_respiratory,respiratory
-respiratory problems (lungs),other_respiratory,respiratory
-respiratory stress,other_respiratory,respiratory
-respiratory symptoms,other_respiratory,respiratory
-rever,fever,systemic
-rhinorrhea,rhinorrhea,respiratory
-rhinorrhoea,rhinorrhea,respiratory
-rigor,other_musculoskeletal,musculoskeletal
-running nose,rhinorrhea,respiratory
-runny nose,rhinorrhea,respiratory
-sensation of chill,other_systemic,systemic
-sepsis,sepsis,systemic
-septic shock,sepsis,systemic
 severe,,
-severe acute respiratory distress syndrome,ARDS,respiratory
-severe acute respiratory infection,other_respiratory,respiratory
-severe dyspnea,dyspnea,respiratory
-severe pneumonia,pneumonia,respiratory
-shortness breath,dyspnea,respiratory
-shortness of breath,dyspnea,respiratory
-similar to a respiratory infection,other_respiratory,respiratory
-slight fever,fever,systemic
-sneeze,other_respiratory,respiratory
-sneezing,other_respiratory,respiratory
-somnolence,other_neurological,neurological
-sore body,other_systemic,systemic
-sore limbs,other_muscoluskeletal,musculoskeletal
-sore muscle,other_musculoskeletal,musculoskeletal
-sore throa,pharyngitis,respiratory
-sore throat,pharyngitis,respiratory
-sore throath,pharyngitis,respiratory
-sputum,pneumonia,respiratory
-sweating,other_unspecified,unspecified
-symptoms associated,other_unspecified,unspecified
-systemic weakness,asthenia,systemic
-then 38 ℃),fever,systemic
-then on march 4 had feverish symptoms,fever,systemic
-throat discomfort,pharyngitis,respiratory
-tired,fatigue,systemic
-tiredness,fatigue,systemic
-toothache,other_unspecified,unspecified
-tosse,cough,respiratory
-transient fatigue,fatigue,systemic
-unproductive cough,cough,respiratory
-unwellness,malaise,systemic
-vomiting.,emesis,gastrointestinal
-weak,asthenia,systemic
-weakness,asthenia,systemic
-wheezing,other_respiratory,respiratory
 yes,,
