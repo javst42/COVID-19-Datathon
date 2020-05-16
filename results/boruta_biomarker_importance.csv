@@ -1,0 +1,80 @@
+Biomarker,Importance
+procalcitonin,12.99900181304062
+`Lactate dehydrogenase`,12.502826977174683
+`Hypersensitive cardiac troponinI`,10.848225204888072
+`White blood cell count`,10.246561853059173
+`Amino-terminal brain natriuretic peptide precursor(NT-proBNP)`,9.953836410826097
+`neutrophils count`,9.485286016922833
+ferritin,9.249043288012507
+`Interleukin 6`,9.109202791227359
+`D-D dimer`,8.897774723429222
+`Fibrin degradation products`,8.481457234516855
+age,8.114521449140554
+`(%)lymphocyte`,7.967134694224376
+`Interleukin 10`,7.095476752269617
+`Hypersensitive c-reactive protein`,6.844321229174173
+`International standard ratio`,6.188983907156591
+Urea,6.022299615793506
+`Prothrombin activity`,5.741930004987903
+`neutrophils(%)`,5.615846407035808
+`Prothrombin time`,5.584288361377191
+`Interleukin 2 receptor`,5.449006000895769
+`aspartate aminotransferase`,5.221428435962355
+`Direct bilirubin`,4.791675472668239
+`lymphocyte count`,4.714350962634722
+`Serum chloride`,4.034398666158465
+`HCO3-`,3.964415493750313
+albumin,3.8390900128366154
+HBsAg,3.4959866368474546
+`serum sodium`,3.4721297956421964
+antithrombin,3.3803854524303523
+eGFR,3.1463725927878703
+`Total cholesterol`,2.8694820747001555
+`basophil count(#)`,2.792160735020265
+shadowMax,2.7910613387399996
+globulin,2.6905980900950466
+creatinine,2.6391806889843292
+calcium,2.5809525848318198
+`Platelet count`,2.413128874406612
+`Red blood cell distribution width`,2.249546113149733
+shadowMean,-0.08605821007467
+shadowMin,-2.518383276150163
+gender,-Inf
+hemoglobin,-Inf
+`eosinophils(%)`,-Inf
+`Alkaline phosphatase`,-Inf
+`basophil(%)`,-Inf
+`Total bilirubin`,-Inf
+`monocytes(%)`,-Inf
+`Interleukin 8`,-Inf
+`indirect bilirubin`,-Inf
+`total protein`,-Inf
+`Quantification of Treponema pallidum antibodies`,-Inf
+`mean corpuscular volume`,-Inf
+hematocrit,-Inf
+`Tumor necrosis factorα`,-Inf
+`mean corpuscular hemoglobin concentration`,-Inf
+fibrinogen,-Inf
+`Interleukin 1β`,-Inf
+`PH value`,-Inf
+`Red blood cell count`,-Inf
+`Eosinophil count`,-Inf
+`Corrected calcium`,-Inf
+`Serum potassium`,-Inf
+glucose,-Inf
+`Mean platelet volume`,-Inf
+`RBC distribution width SD`,-Inf
+`Thrombin time`,-Inf
+`HCV antibody quantification`,-Inf
+`Uric acid`,-Inf
+`platelet large cell ratio`,-Inf
+`monocytes count`,-Inf
+`PLT distribution width`,-Inf
+`γ-glutamyl transpeptidase`,-Inf
+`2019-nCoV nucleic acid detection`,-Inf
+`mean corpuscular hemoglobin`,-Inf
+`Activation of partial thromboplastin time`,-Inf
+`HIV antibody quantification`,-Inf
+thrombocytocrit,-Inf
+ESR,-Inf
+`glutamic-pyruvic transaminase`,-Inf
