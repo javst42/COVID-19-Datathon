@@ -13,7 +13,9 @@ Link to processed data: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/s
 
 ## Biomarker data
 <p>
-Original: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/time_series_375_prerpocess_en.csv
+Original: https://www.nature.com/articles/s42256-020-0180-7#Sec10
+<br>
+Easy access: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/time_series_375_prerpocess_en.csv
 </p>
 <p>
 There are multiple ways to group this data. I think using the first value is the most useful because it allows for more time to prepare. A test the day prior to discharge isn't very useful.
