@@ -30,8 +30,8 @@ from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import LinearSVC
 from sklearn.linear_model import SGDClassifier
-#from xgboost import XGBClassifier
 #regressions
+import xgboost as xgb
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import SGDRegressor
@@ -52,7 +52,7 @@ df = pd.read_csv('https://github.com/javst42/COVID-19-Datathon/raw/master/data/c
 #print(df.head(6))
 #print(df.shape)
 #print(df.isnull().sum())
-#print(list(df))
+print(list(df))
 #df.info()
 
 #make sure all dates are correct dtype
@@ -116,6 +116,7 @@ numer_cols = ['age','Hypersensitive cardiac troponinI', 'hemoglobin', 'Serum chl
 categ_cols = ['sex_male', 'sex_female', 'outcome_died', 'outcome_discharged'] #drop country, continent since we have so few samples
 
 feature_cols = numer_cols + categ_cols
+print(feature_cols)
 
 # #make dataframe copy for feature selection
 # df_copy = df.copy()
@@ -147,6 +148,7 @@ for i in range(len(numer_cols)):
 
 #set random.seed() for reproducibility
 np.random.seed(1234)
+r_seed = 3
 
 # choose classifier/regressor, and then fit model
 #estimators
@@ -189,7 +191,7 @@ lgbr = lgb.LGBMRegressor(max_depth = -1, n_estimators = 1000, silent = False)
 
 #XGBoost
 import xgboost as xgb
-xgbr = xgb.XGBRegressor()
+xgbr = xgb.XGBRegressor(seed = r_seed)
 
 
 #run model
@@ -216,7 +218,27 @@ print('range for length of stay from {0} to {1}'.format(target_min, target_max))
 
 # results = pd.concat([results, out], axis=1)
 
-sns.lineplot(out_validate.ravel(), out_validate_pred.ravel())
-sns.lineplot(out_test.ravel(), out_test_pred.ravel())
+# sns.set()
+# sns.lineplot(out_validate.ravel(), out_validate_pred.ravel())
+# sns.lineplot(out_test.ravel(), out_test_pred.ravel())
 
-out_validate = train_validate[target_col].values
+#print(xgbr.feature_importances_)
+
+# plot feature importance
+feature_imp = pd.DataFrame(feature_cols)
+feature_imp['importance']=xgbr.feature_importances_
+feature_imp.columns=['feature', 'importance']
+
+desc_feature_imp = feature_imp.sort_values('importance', ascending=True)
+print(feature_imp.head(5))
+
+
+fig = plt.figure()
+ax = fig.add_axes([0,0,1,1])
+langs = ['C', 'C++', 'Java', 'Python', 'PHP']
+students = [23,17,35,29,12]
+ax.barh(desc_feature_imp['feature'].head(10), desc_feature_imp['importance'].head(10))
+plt.show()
+
+# xgb.plot_importance(xgbr)
+# plt.show()
