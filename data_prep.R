@@ -17,7 +17,7 @@ library(tidyverse)
 
 # Load data ---------------------------------------------------------------
 url_survival <- "https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/latestdata.csv"
-url_survival <- "/Users/brunods/MIT/COVID_datathon/data/latestdata.csv"
+#url_survival <- "/Users/brunods/MIT/COVID_datathon/data/latestdata.csv"
 url_merge <- "https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/bruno_798_patients_merged_survival_data.csv"
 tbl_ncov19 <- read_csv(url_survival)
 tbl_merge <- read_csv(url_merge)
