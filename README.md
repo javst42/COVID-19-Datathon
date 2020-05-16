@@ -4,6 +4,7 @@ predicive analysis.
 
 
 # Data used
+## Symptom data
 Data comes from nCoV2019 and was cleaned for survival analysis and ML.
 https://github.com/beoutbreakprepared/nCoV2019/tree/master/latest_data
 
@@ -26,18 +27,3 @@ First value aggregated: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/c
 <p>
 Last value aggregated: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/clean_biomarker_last.csv
 </p>
-<<<<<<< HEAD
-
-
-
-
-=======
-
-
-
-
->>>>>>> b0ca41e6bcc6eef878c50d7b0359d30d1850cdff
-a7e29a12ad9aa17b8879383b98f21a0e5a014d78
-
-
-  
