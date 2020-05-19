@@ -14,6 +14,8 @@ Link to processed data: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/s
 ## Biomarker data
 <p>
 Original: https://www.nature.com/articles/s42256-020-0180-7#Sec10
+
+### Train data
 <br>
 Easy access: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/time_series_375_prerpocess_en.csv
 </p>
@@ -28,4 +30,17 @@ First value aggregated: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/c
 </p>
 <p>
 Last value aggregated: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/clean_biomarker_last.csv
+</p>
+### Test data
+<br>
+Easy access: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/time_series_test_110_preprocess_en.csv
+</p>
+<p>
+Mean aggregated: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/clean_biomarker_test_mean.csv
+</p>
+<p>
+First value aggregated: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/clean_biomarker_test_first.csv
+</p>
+<p>
+Last value aggregated: https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/clean_biomarker_test_last.csv
 </p>
