@@ -21,10 +21,10 @@ So far, we've used survival analysis for EDA by estimating the survival function
 Owing to the discrete, non-linear nature of symptom data, we chose to use tree-based models to handle the discrete nonlinearity of symptom data. We used the tree-based algorithm LightGBM to learn from patient symptoms and predict their duration of hospitalization. GBM was trained on recovered and deceased patients to predict the probability of patient death. We wanted our pipeline to explain which symptoms were most important, so our models were evaluated using [Shapley values](https://christophm.github.io/interpretable-ml-book/shapley.html).
 
 ### Biomarker data
-We found a dataset containing hundreds of severely ill COVID-19 patients. We used [Boruta](https://www.datacamp.com/community/tutorials/feature-selection-R-boruta) to determine which biomarkers are important for survival. Using those important biomarkers, we used a topological data analysis technique, BallMapper, to cluster these patients. Once clustered, the patient clusters were colored by their survival rates. The result is an unsupervised model for assesssing the risks of new patients.
+We found a dataset containing hundreds of severely ill COVID-19 patients. We used [Boruta](https://www.datacamp.com/community/tutorials/feature-selection-R-boruta) to determine which biomarkers are important for survival. Using those important biomarkers, we used a topological data analysis technique, BallMapper, to cluster these patients. Once clustered, the patient clusters were colored by their survival rates. The result is an unsupervised model for assesssing the risks of new patients. We have also been experimenting with UMAP for dimensionally reducing and clustering new data points onto our original data.
 
 
-Solarized dark             |  Solarized Ocean
+BallMapper             |  Supervised UMAP generalizes to new data
 :-------------------------:|:-------------------------:
 ![ballmapper](https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/figures/ballmapper_biomarkers.png)  |  ![umap](https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/figures/nature_biomarkers_test_80_neighbors_manhattan.png)
 
