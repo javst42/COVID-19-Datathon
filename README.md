@@ -27,9 +27,6 @@ Owing to the discrete, non-linear nature of symptom data, we chose to use tree-b
 We found a dataset containing hundreds of severely ill COVID-19 patients. We used [Boruta](https://www.datacamp.com/community/tutorials/feature-selection-R-boruta) to determine which biomarkers are important for survival. Using those important biomarkers, we used a topological data analysis technique, BallMapper, to cluster these patients. Once clustered, the patient clusters were colored by their survival rates. The result is an unsupervised model for assesssing the risks of new patients.
 ![ballmapper](https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/figures/ballmapper_biomarkers.png)
 
-We are also experimenting with supervised UMAPs for dimensionality reduction.
-![umap](https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/figures/nature_biomarkers_test_80_neighbors_manhattan.png)
-
 
 
 # Future work
