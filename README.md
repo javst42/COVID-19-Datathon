@@ -14,9 +14,6 @@ To best inform patients and healthcare workers we've taken a multifaceted approa
 ## Survival analysis
 So far, we've used survival analysis for EDA by estimating the survival function across populations with Kaplan-Meier plots. We are investigating the use of patient-level analyses with techniques that can use symptom/biomarker data like the [Cox proportional hazards model](https://en.wikipedia.org/wiki/Proportional_hazards_model#The_Cox_model).
 
-_Kaplan-Meier plot for hospitalization probability_
-![surv](https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/figures/Hospitalization_by_continent.png)
-As datasets evolve, we expect to see more events in Europe and the Americas.
 
 ## Supervised learning
 
