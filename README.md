@@ -1,6 +1,11 @@
-MIT COVID-19-Datathon, May 2020, team D002
-Data cleaning scripts, data anlaysis scripts, and datasets for a COVID-19 survival analysis and time-in-hospital 
-predicive analysis.
+# MIT COVID-19-Datathon, May 2020, team D002
+
+## Table of Contents
+1. [Motivation](#motivation)
+2. [Methods](#methods)
+3. [Future work](#future-work)
+4. [Data used](#data-used)
+
 
 # Motivation
 Our goal was to create a universal COVID-19 risk index for clinicians to guide patient care and allocate resources. We have shown that the severity of patient outcomes can be predicted to varying extends based on symptoms and blood biomarkers. We are continuing to improve on our work by using more datasets as they comes out.
