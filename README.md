@@ -3,9 +3,9 @@
 ## Table of Contents
 1. [Motivation](#motivation)
 2. [Methods](#methods)
-  1. [Survival analysis](#survival-analysis)
-  2. [Supervised learning](#supervised-learning)
-  3. [Topological data analysis](#topological-data-analysis)
+  2.1. [Survival analysis](#survival-analysis)
+  2.2. [Supervised learning](#supervised-learning)
+  2.3. [Topological data analysis](#topological-data-analysis)
 3. [Future work](#future-work)
 4. [Data used](#data-used)
 
