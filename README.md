@@ -1,5 +1,7 @@
 # MIT COVID-19-Datathon, May 2020, team D002
 
+![logo](https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/figures/logo.png)
+
 ## Table of Contents
 1. [Motivation](#motivation)
 2. [Methods](#methods)
