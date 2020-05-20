@@ -3,6 +3,9 @@
 ## Table of Contents
 1. [Motivation](#motivation)
 2. [Methods](#methods)
+  1. [Survival analysis](#survival-analysis)
+  2. [Supervised learning](#supervised-learning)
+  3. [Topological data analysis](#topological-data-analysis)
 3. [Future work](#future-work)
 4. [Data used](#data-used)
 
@@ -24,6 +27,8 @@ So far, we've used survival analysis for EDA by estimating the survival function
 
 ### Symptom data
 Owing to the discrete, non-linear nature of symptom data, we chose to use tree-based models to handle the discrete nonlinearity of symptom data. We used the tree-based algorithm LightGBM to learn from patient symptoms and predict their duration of hospitalization. GBM was trained on recovered and deceased patients to predict the probability of patient death. We wanted our pipeline to explain which symptoms were most important, so our models were evaluated using [Shapley values](https://christophm.github.io/interpretable-ml-book/shapley.html).
+
+## Topological data analysis
 
 ### Biomarker data
 We found a dataset containing hundreds of severely ill COVID-19 patients. We used [Boruta](https://www.datacamp.com/community/tutorials/feature-selection-R-boruta) to determine which biomarkers are important for survival. Using those important biomarkers, we used a topological data analysis technique, BallMapper, to cluster these patients. Once clustered, the patient clusters were colored by their survival rates. The result is an unsupervised model for assesssing the risks of new patients. We have also been experimenting with UMAP for dimensionally reducing and clustering new data points onto our original data.
