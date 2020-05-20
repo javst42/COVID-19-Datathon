@@ -2,6 +2,38 @@ MIT COVID-19-Datathon, May 2020, team D002
 Data cleaning scripts, data anlaysis scripts, and datasets for a COVID-19 survival analysis and time-in-hospital 
 predicive analysis.
 
+# Motivation
+Our goal was to create a universal COVID-19 risk index for clinicians to guide patient care and allocate resources. We have shown that the severity of patient outcomes can be predicted to varying extends based on symptoms and blood biomarkers. We are continuing to improve on our work by using more datasets as they comes out.
+
+![approach](https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/figures/approach.png)
+
+# Methods
+
+To best inform patients and healthcare workers we've taken a multifaceted approach
+
+## Survival analysis
+So far, we've used survival analysis for EDA by estimating the survival function across populations with Kaplan-Meier plots. We are investigating the use of patient-level analyses with techniques that can use symptom/biomarker data like the [Cox proportional hazards model](https://en.wikipedia.org/wiki/Proportional_hazards_model#The_Cox_model).
+
+_Kaplan-Meier plot for hospitalization probability_
+![surv](https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/figures/Hospitalization_by_continent.png)
+As datasets evolve, we expect to see more events in Europe and the Americas.
+
+## Supervised learning
+
+### Symptom data
+Owing to the discrete, non-linear nature of symptom data, we chose to use tree-based models to handle the discrete nonlinearity of symptom data. We used the tree-based algorithm LightGBM to learn from patient symptoms and predict their duration of hospitalization. GBM was trained on recovered and deceased patients to predict the probability of patient death. We wanted our pipeline to explain which symptoms were most important, so our models were evaluated using [Shapley values](https://christophm.github.io/interpretable-ml-book/shapley.html).
+
+### Biomarker data
+We found a dataset containing hundreds of severely ill COVID-19 patients. We used [Boruta](https://www.datacamp.com/community/tutorials/feature-selection-R-boruta) to determine which biomarkers are important for survival. Using those important biomarkers, we used a topological data analysis technique, BallMapper, to cluster these patients. Once clustered, the patient clusters were colored by their survival rates. The result is an unsupervised model for assesssing the risks of new patients.
+![ballmapper](https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/figures/ballmapper_biomarkers.png)
+
+We are also experimenting with supervised UMAPs for dimensionality reduction.
+![umap](https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/figures/nature_biomarkers_test_80_neighbors_manhattan.png)
+
+
+
+# Future work
+Data available during the datathon were limited and overrepresented patient populations from locations early on in the outbreak. The biomarker data, especially, is from a non-representative COVID-19 cohort, where the death rate was ~50%. We seek to develop this project by adding more data, finding better ways to use the data we already have (handling survival censorship), and testing our models on separate datasets. We also hope to identify potential confounding factors like country, so that we can make our pipeline more robust.
 
 # Data used
 ## Symptom data
