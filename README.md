@@ -1,6 +1,6 @@
 <h1>
-<img alt="LOGO" src="https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/figures/logo.png" height=100 width="auto">
-MIT COVID-19-Datathon, Team-D-002
+<img alt="LOGO" src="https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/figures/logo.png" height=120 width="auto">
+<span style="display: inline-block; vertical-align: middle; line-height: normal;">MIT COVID-19-Datathon, Team-D-002</span>
 </h1>
 
 
