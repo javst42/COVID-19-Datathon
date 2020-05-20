@@ -1,4 +1,8 @@
-# MIT COVID-19-Datathon, May 2020, team D002
+<h1>
+<img alt="LOGO" src="https://brunods10.s3-us-west-2.amazonaws.com/MIT_COVID/figures/logo.png" height=150 width="auto">
+MIT COVID-19-Datathon, Team-D-002
+</h1>
+
 
 
 ## Table of Contents
